@@ -10,7 +10,10 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         Text("Hello, world!")
-            .padding()
+            .onAppear(perform: {
+                let url = URL(string: "https://jsonplaceholder.typicode.com/posts")
+                URLSession.shared.dataTask(with: <#T##URLRequest#>)
+            })
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 //MARK: - Properties
 
 //user struct
-struct User {
+struct User: Decodable {
     var id: Int
     var name: String
     var username: String
@@ -20,7 +20,7 @@ struct User {
 }
 //struct adress
 
-struct Adress {
+struct Adress: Decodable {
     var street: String
     var suite: String
     var city: String
@@ -28,7 +28,7 @@ struct Adress {
     var  geo: Geo
 }
 //geo struct properties
-struct Geo {
+struct Geo: Decodable {
     var lat: String
     var lng: String
 }
@@ -47,7 +47,14 @@ struct ContentView: View {
                         print(error.localizedDescription)
                     } else { //we dont want optinal data
                         if let data = data { //unwrapping this data
-                            print(String(data: data, encoding: .utf8)) //a type of way this data is encoded , prints to console
+                            let decoder = JSONDecoder()
+                            do {
+                                try decoder.decode([User].self, from: data) //decoding user data from json
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                           
+                            
                         }
                     }
                     

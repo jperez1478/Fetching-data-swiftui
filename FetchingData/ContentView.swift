@@ -17,7 +17,7 @@ struct ContentView: View {
         Text("Hello, world!")
             .onAppear(perform: {
                 //you want to avoid this because app will crash
-                let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+                let url = URL(string: "https://swapi.dev/api/people/1")!
                 //closer a funcion withing a function
                 URLSession.shared.dataTask(with: url) { data, response, error in //given three paramater data,resposnse, error
                     if let error = error {

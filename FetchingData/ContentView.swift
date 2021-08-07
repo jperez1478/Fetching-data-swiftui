@@ -9,6 +9,7 @@ import SwiftUI
 
 //MARK: - Properties
 
+
 //user struct
 struct User: Decodable {
     var id: Int
@@ -36,6 +37,8 @@ struct Geo: Decodable {
 
 //MARK: - Body
 struct ContentView: View {
+    @State var users = [User]() //representing empty user array
+    
     var body: some View {
         Text("Hello, world!")
             .onAppear(perform: {
@@ -49,7 +52,9 @@ struct ContentView: View {
                         if let data = data { //unwrapping this data
                             let decoder = JSONDecoder()
                             do {
-                                try decoder.decode([User].self, from: data) //decoding user data from json
+                             let users = try decoder.decode([User].self, from: data)
+                                self.users = users 
+                            //decoding user data from json in an array of users
                             } catch {
                                 print(error.localizedDescription)
                             }

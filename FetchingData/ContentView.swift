@@ -9,6 +9,29 @@ import SwiftUI
 
 //MARK: - Properties
 
+//user struct
+struct User {
+    var id: Int
+    var name: String
+    var username: String
+    var email: String
+    var adress: Adress
+    
+}
+//struct adress
+
+struct Adress {
+    var street: String
+    var suite: String
+    var city: String
+    var zipcode: String
+    var  geo: Geo
+}
+//geo struct properties
+struct Geo {
+    var lat: String
+    var lng: String
+}
 
 
 //MARK: - Body

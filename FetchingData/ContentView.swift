@@ -11,8 +11,19 @@ struct ContentView: View {
     var body: some View {
         Text("Hello, world!")
             .onAppear(perform: {
-                let url = URL(string: "https://jsonplaceholder.typicode.com/posts")
-                URLSession.shared.dataTask(with: <#T##URLRequest#>)
+                //you want to avoid this because app will crash
+                let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+                //closer a funcion withing a function
+                URLSession.shared.dataTask(with: url) { data, response, error in //given three paramater data,resposnse, error
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else { //we dont want optinal data
+                        if let data = data { //unwrapping this data
+                            print(String(data: data, encoding: .utf8)) //a type of way this data is encoded
+                        }
+                    }
+                    
+                }
             })
     }
 }
